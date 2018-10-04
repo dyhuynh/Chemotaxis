@@ -2,8 +2,8 @@ Bacteria[] bob;
  void setup()   
  {     
  	frameRate(10);
-	size(400,400);
-	bob = new Bacteria[5];
+	size(600,600);
+	bob = new Bacteria[15];
 	for (int i = 0; i<bob.length; i++)
 	{
 		bob[i] = new Bacteria();
@@ -13,7 +13,7 @@ Bacteria[] bob;
  void draw()   
 
  {    
- 	 background(0);
+ 	 background(59, 191, 214);
 for (int i = 0; i<bob.length; i++) 
 	{
 	bob[i].show();
@@ -29,43 +29,37 @@ for (int i = 0; i<bob.length; i++)
 
 	Bacteria() 
 	{
-		myX = 200;
-		myY = 200;
+		myX = (int)(Math.random()*600);
+		myY = (int)(Math.random()*600);
 		myColor = color((int)(Math.random()*255),(int)(Math.random()*255),(int)(Math.random()*255));
 	
 	}
 
 	void show() 
 	{	fill(myColor);
+		noStroke();
 
 		ellipse(myX,myY,30,30);
 	}
 	void walk()
 	{
-				int direct = (int)(Math.random()*4+1);
-
-
-		if (direct == 1) 
-			{
-				myX = myX + 5;
 				
-			}
-		else if (direct == 2)
-			{
-				myX = myX - 5;
-				
-			}
-		else if (direct == 3)
-			{
-				myY = myY - 5;
-			
-			}
-		else if (direct == 4)
-			{
-				myY = myY + 5;
-			}
-		/*myX = myX + (int)(Math.random()*8-4);
-		myY = myY + (int)(Math.random()*8-4); */
+		myX = myX + (int)(Math.random()*27-13);
+		myY = myY + (int)(Math.random()*27-13); 
+
+		if ((mouseX-myX)>0)
+		{
+			myX = myX + ((mouseX-myX)/20-4);
+		myY = myY + ((mouseY-myY)/20-4); 
+		}
+
+		if ((mouseX-myX)<0)
+		{
+			myX = myX + ((mouseX-myX)/20+4);
+		myY = myY + ((mouseY-myY)/20+4); 
+		}
+	
+
 
 	}
 
